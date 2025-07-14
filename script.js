@@ -26,7 +26,7 @@ function backspace() {
 function calculateResult() {
   try {
     let expr = display.value.trim().toLowerCase();
-    const functionPattern = /(sin|cos|tan|asin|acos|atan|ln|log)\s*(-?\d+\.?\d*)/g;
+    const functionPattern = /(sin|cos|tan|asin|acos|atan|ln|log|e|√|square|cube|power)\s*(-?\d+\.?\d*)/g;
     expr = expr.replace(functionPattern, (match, func, num) => {
       switch (func) {
         case 'sin':
@@ -45,6 +45,16 @@ function calculateResult() {
           return `Math.log(${num})`;
         case 'log':
           return `Math.log10(${num})`;
+        case 'e':
+          return `Math.exp(${num})`;
+        case '√':
+          return `Math.sqrt(${num})`;
+        case 'square':
+          return `Math.pow(${num}, 2)`;
+        case 'cube':
+          return `Math.pow(${num}, 3)`;
+        case 'power':
+          return `Math.pow(${num}, ${num})`;
         default:
           return match;
       }
